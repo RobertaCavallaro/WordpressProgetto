@@ -6,7 +6,7 @@ Gentile cliente,
 Sono lieta di presentarvi il progetto di deployment dell'applicazione WordPress su un'infrastruttura cloud sicura e resiliente. Ho preso in considerazione le vostre esigenze e ho creato una soluzione completa che risponde ai requisiti specificati nel brief. Di seguito, troverete i dettagli del mio lavoro.
 
 Repository Git Pubblico:
-Ho creato un repository pubblico su GitHub in cui ho organizzato il codice e la documentazione per il progetto. Potete trovare il repository al seguente link: Link al repository GitHub
+Ho creato un repository pubblico su GitHub in cui ho organizzato il codice e la documentazione per il progetto. Potete trovare il repository al seguente link: https://github.com/RobertaCavallaro/WordpressProgetto)
 
 Automazione Infrastrutturale e Setup Applicativo:
 Per automatizzare la creazione dell'infrastruttura e il setup dell'applicazione WordPress, ho utilizzato Terraform, uno strumento affidabile e flessibile per la gestione dell'infrastruttura come codice. Ho creato una definizione di infrastruttura in formato Terraform, che include le risorse necessarie per l'esecuzione dell'applicazione. Questa definizione garantisce coerenza e riproducibilità nell'implementazione.
