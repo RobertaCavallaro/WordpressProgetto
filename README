@@ -1,0 +1,34 @@
+Descrizione dell'Infrastruttura:
+
+VPC e Subnet:
+Ho configurato una Virtual Private Cloud (VPC) con l'indirizzo IP base 10.0.0.0/16. All'interno di questa VPC, ho creato due subnet:
+Subnet pubblica (publica): La subnet 10.0.0.0/24 nella zona di disponibilità us-east-1a. Questa subnet è destinata a ospitare l'istanza EC2 di WordPress. La configurazione include il mapping di un indirizzo IP pubblico all'avvio dell'istanza.
+Subnet privata (privata): La subnet 10.0.1.0/24 nella zona di disponibilità us-east-1b. Questa subnet ospita l'istanza EC2 di MySQL ed è isolata dalla rete pubblica.
+
+
+Internet Gateway:
+Ho creato un Internet Gateway e l'ho associato alla VPC. Questo permette alle risorse all'interno della VPC, come le istanze EC2, di comunicare con Internet e di essere accessibili dall'esterno.
+
+
+Security Groups:
+Ho definito due gruppi di sicurezza:
+wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. Questo gruppo di sicurezza è inoltre configurato per permettere il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza MySQL.
+mysql_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di MySQL. È configurato per permettere solo il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza WordPress. Questa configurazione garantisce che solo l'istanza WordPress possa accedere al database MySQL.
+
+EC2 Instances:
+Ho creato due istanze EC2:
+Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica (publica) e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
+Istanza EC2 di MySQL: Questa istanza è posizionata nella subnet privata (privata) e utilizza il gruppo di sicurezza mysql_sg.
+
+Elastic IP:
+Ho associato un indirizzo IP elastico all'istanza di WordPress. Questo indirizzo IP rimane costante anche dopo eventuali riavvii dell'istanza, garantendo la stabilità dell'indirizzo di accesso.
+
+
+Connessione tra MySQL e WordPress:
+La connessione tra il database MySQL e l'applicazione WordPress è realizzata attraverso la configurazione dei gruppi di sicurezza. L'istanza WordPress è autorizzata a comunicare sulla porta 3306 con l'istanza MySQL, mentre l'istanza MySQL accetta solo connessioni provenienti dall'istanza WordPress. Questo garantisce una comunicazione sicura e controllata tra i due servizi.
+Istanza MySQL:
+L'istanza MySQL, creata utilizzando aws_instance.mysql_instance, è ospitata nella subnet privata (custom_subnet_1b). Utilizza il gruppo di sicurezza aws_security_group.mysql_sg.
+Istanza WordPress:
+L'istanza di WordPress, creata utilizzando aws_instance.wordpress_instance, è ospitata nella subnet pubblica (custom_subnet_1a). Utilizza il gruppo di sicurezza aws_security_group.wordpress_sg.
+Configurazione di WordPress:
+L'applicazione WordPress richiede dati dal database MySQL per funzionare, come post, pagine, impostazioni, ecc.
