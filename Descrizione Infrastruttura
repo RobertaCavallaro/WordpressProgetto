@@ -1,0 +1,43 @@
+Descrizione dell'Infrastruttura:
+
+VPC e Subnet:
+
+Una Virtual Private Cloud (VPC) con l'indirizzo IP 10.0.0.0/16.
+Due subnet: 10.0.0.0/24 (publica) in us-east-1a e 10.0.1.0/24 (privata) in us-east-1b.
+
+Internet Gateway:
+Un Internet Gateway per consentire la connettività verso e da Internet.
+
+Security Groups:
+Un gruppo di sicurezza wordpress_sg per il server WordPress, consentendo traffico HTTP (porta 80) e SSH (porta 22).
+Un gruppo di sicurezza mysql_sg per il server MySQL, consentendo traffico MySQL (porta 3306) solo dal gruppo di sicurezza associato al server WordPress.
+
+EC2 Instances:
+Un'istanza EC2 per il server WordPress, con un indirizzo IP pubblico assegnato.
+Un'istanza EC2 per il server MySQL, in una subnet privata.
+
+Elastic IP:
+Un indirizzo IP elastico associato all'istanza WordPress per garantire stabilità.
+
+Il database MySQL e WordPress sono collegati attraverso i seguenti componenti e configurazioni:
+
+Gruppi di Sicurezza: 
+Il aws_security_group.wordpress_sg associato all'istanza EC2 di WordPress ha una regola di ingresso che consente il traffico MySQL in ingresso (porta 3306) dal gruppo di sicurezza associato all'istanza di MySQL. Questa regola permette una comunicazione sicura tra l'istanza di WordPress e il database MySQL.
+Istanza MySQL:
+
+L'istanza MySQL, creata utilizzando aws_instance.mysql_instance, è ospitata nella subnet privata (custom_subnet_1b). Utilizza il gruppo di sicurezza aws_security_group.mysql_sg.
+Istanza WordPress:
+L'istanza di WordPress, creata utilizzando aws_instance.wordpress_instance, è ospitata nella subnet pubblica (custom_subnet_1a). Utilizza il gruppo di sicurezza aws_security_group.wordpress_sg.
+Configurazione di WordPress:
+
+Durante l'installazione di WordPress,si devono fornire i dettagli di connessione al database MySQL. Questi dettagli includono il nome host o l'indirizzo IP dell'istanza MySQL, il nome del database, il nome utente del database e la password del database.
+Il flusso di connessione è il seguente:
+Un utente accede all'applicazione WordPress tramite l'indirizzo IP pubblico dell'istanza di WordPress
+
+L'applicazione WordPress richiede dati dal database MySQL per funzionare, come post, pagine, impostazioni, ecc.
+
+Quando viene effettuata una richiesta che richiede dati dal database, l'applicazione WordPress si connette al database MySQL utilizzando il nome host o l'indirizzo IP dell'istanza MySQL.
+
+La connessione viene stabilita sulla porta 3306, come consentito dalla regola di ingresso nel gruppo di sicurezza aws_security_group.mysql_sg.
+
+L'istanza MySQL elabora la query e restituisce i dati richiesti all'applicazione WordPress.
