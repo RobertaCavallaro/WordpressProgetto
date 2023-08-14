@@ -15,10 +15,12 @@ Ho definito due gruppi di sicurezza:
 wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. Questo gruppo di sicurezza è inoltre configurato per permettere il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza MySQL.
 mysql_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di MySQL. È configurato per permettere solo il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza WordPress. Questa configurazione garantisce che solo l'istanza WordPress possa accedere al database MySQL.
 
+
 EC2 Instances:
 Ho creato due istanze EC2:
 Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica (publica) e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
 Istanza EC2 di MySQL: Questa istanza è posizionata nella subnet privata (privata) e utilizza il gruppo di sicurezza mysql_sg.
+
 
 Elastic IP:
 Ho associato un indirizzo IP elastico all'istanza di WordPress. Questo indirizzo IP rimane costante anche dopo eventuali riavvii dell'istanza, garantendo la stabilità dell'indirizzo di accesso.
@@ -32,3 +34,44 @@ Istanza WordPress:
 L'istanza di WordPress, creata utilizzando aws_instance.wordpress_instance, è ospitata nella subnet pubblica (custom_subnet_1a). Utilizza il gruppo di sicurezza aws_security_group.wordpress_sg.
 Configurazione di WordPress:
 L'applicazione WordPress richiede dati dal database MySQL per funzionare, come post, pagine, impostazioni, ecc.
+
+Comandi usati per installare WordPress:
+dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
+wget https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+
+Inizia database e Apache httpd server:
+sudo systemctl start mariadb httpd
+mysql -u root -p
+CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';
+CREATE DATABASE `wordpress-db`;
+GRANT ALL PRIVILEGES ON `wordpress-db`.* TO "wordpress-user"@"localhost";
+
+Crea un file di configurazione 
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
+nano wordpress/wp-config.php  inserisci il nome del database, l utente e la password
+
+Esegui lo script di installazione
+cp -r wordpress/* /var/www/html/
+
+Usa I files di Apache per fare funzionare I permalinks(url permanenti) di Wordpress
+sudo nano /etc/httpd/conf/httpd.conf   e configura   AllowOverride None a  AllowOverride ALL.
+
+Installa PHP server-side programming language
+sudo dnf install php-gd
+dnf list | grep php
+sudo dnf install -y php8.1-gd
+
+Concedi file di proprieta’ ad Apache server
+sudo chown -R apache /var/www
+sudo chgrp -R apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0644 {} \;
+
+Installa WordPress on Amazon Linux 2023
+sudo systemctl enable httpd && sudo systemctl enable mariadb
+sudo chkconfig httpd on && sudo chkconfig mysqld on
+sudo service mysqld start
+sudo service httpd start
+
