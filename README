@@ -1,4 +1,5 @@
 Descrizione dell'Infrastruttura:
+Ho utilizzato un architettura monolitica, cioe' tutti i componenti, compreso il server web di WordPress e il server di database MySQL, sono ospitati all'interno della stessa istanza EC2.
 
 VPC e Subnet:
 Ho configurato una Virtual Private Cloud (VPC) con l'indirizzo IP base 10.0.0.0/16. All'interno di questa VPC, ho creato due subnet:
