@@ -1,7 +1,7 @@
 # WordpressProgetto
 Progetto di Deployment di WordPress su Infrastruttura Cloud - Brief e Presentazione
 
-Sono lieta di presentarvi il progetto di deployment dell'applicazione WordPress su un'infrastruttura cloud sicura e resiliente. Ho preso in considerazione le vostre esigenze e ho creato una soluzione completa che risponde ai requisiti specificati nel brief. Di seguito, troverete i dettagli del mio lavoro.
+Sono lieta di presentarvi il progetto di deployment dell'applicazione WordPress su un'infrastruttura cloud sicura e resiliente. Ho preso in considerazione le vostre esigenze e ho creato una soluzione che risponde ai requisiti specificati nel brief. Di seguito, troverete i dettagli del mio lavoro.
 
 Repository Git Pubblico:
 Ho creato un repository pubblico su GitHub in cui ho organizzato il codice e la documentazione per il progetto. Potete trovare il repository al seguente link: https://github.com/RobertaCavallaro/WordpressProgetto
