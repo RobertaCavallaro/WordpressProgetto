@@ -13,14 +13,12 @@ Ho creato un Internet Gateway e l'ho associato alla VPC. Questo permette alle ri
 
 Security Groups:
 Ho definito due gruppi di sicurezza:
-wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. Questo gruppo di sicurezza è inoltre configurato per permettere il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza MySQL.
-mysql_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di MySQL. È configurato per permettere solo il traffico in ingresso sulla porta 3306 (MySQL) proveniente dal gruppo di sicurezza associato all'istanza WordPress. Questa configurazione garantisce che solo l'istanza WordPress possa accedere al database MySQL.
+wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. 
 
 
 EC2 Instances:
-Ho creato due istanze EC2:
+Ho creato un istanza EC2:
 Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica (publica) e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
-Istanza EC2 di MySQL: Questa istanza è posizionata nella subnet privata (privata) e utilizza il gruppo di sicurezza mysql_sg.
 
 
 Elastic IP:
@@ -28,12 +26,7 @@ Ho associato un indirizzo IP elastico all'istanza di WordPress. Questo indirizzo
 
 
 Connessione tra MySQL e WordPress:
-La connessione tra il database MySQL e l'applicazione WordPress è realizzata attraverso la configurazione dei gruppi di sicurezza. L'istanza WordPress è autorizzata a comunicare sulla porta 3306 con l'istanza MySQL, mentre l'istanza MySQL accetta solo connessioni provenienti dall'istanza WordPress. Questo garantisce una comunicazione sicura e controllata tra i due servizi.
-Istanza MySQL:
-L'istanza MySQL, creata utilizzando aws_instance.mysql_instance, è ospitata nella subnet privata (custom_subnet_1b). Utilizza il gruppo di sicurezza aws_security_group.mysql_sg.
-Istanza WordPress:
-L'istanza di WordPress, creata utilizzando aws_instance.wordpress_instance, è ospitata nella subnet pubblica (custom_subnet_1a). Utilizza il gruppo di sicurezza aws_security_group.wordpress_sg.
-Configurazione di WordPress:
+WordPress utilizza un database locale, il database si trova sulla directory /var/www/html all'interno del file wp-config.php
 L'applicazione WordPress richiede dati dal database MySQL per funzionare, come post, pagine, impostazioni, ecc.
 
 Comandi usati per installare WordPress:
@@ -44,9 +37,9 @@ tar -xzf latest.tar.gz
 Inizia database e Apache httpd server:
 sudo systemctl start mariadb httpd
 mysql -u root -p
-CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';
-CREATE DATABASE `wordpress-db`;
-GRANT ALL PRIVILEGES ON `wordpress-db`.* TO "wordpress-user"@"localhost";
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE `wordpress-database`;
+GRANT ALL PRIVILEGES ON `wordpress-db`.* TO "user"@"localhost";
 
 Crea un file di configurazione 
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
