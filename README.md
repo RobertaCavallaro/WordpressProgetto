@@ -16,12 +16,12 @@ Diagramma Infrastrutturale:
 Ho incluso un diagramma infrastrutturale che illustra l'architettura dell'infrastruttura cloud. Questo diagramma offre una panoramica visiva di come le diverse componenti interagiscono tra loro per garantire il corretto funzionamento dell'applicazione WordPress.
 
 Istruzioni per l'Installazione:
-Nel README ho incluso dettagliate istruzioni passo-passo per installare e configurare l'infrastruttura e l'applicazione WordPress. Le istruzioni sono chiare e comprensibili, pensate per guidare sia gli utenti esperti che quelli meno esperti attraverso il processo di deployment.
+Nel README ho incluso dettagliate istruzioni passo-passo per installare e configurare l'infrastruttura e l'applicazione WordPress.
 
 Risultati e Dimostrazione delle Competenze:
 La mia soluzione dimostra competenze approfondite nell'implementazione di infrastrutture cloud, nell'automazione dell'implementazione e nella scelta dei componenti tecnologici per garantire sicurezza e performance. Sono certa che questa soluzione soddisfa gli obiettivi del progetto e che sarà un punto di partenza solido per ulteriori sviluppi.
 
-Sono ansiosa di presentarvi personalmente il mio lavoro e discutere ulteriormente di ogni aspetto del progetto durante la nostra riunione. Resto a vostra disposizione per qualsiasi domanda o chiarimento.
+Sono ansiosa di presentarvi personalmente il mio lavoro e discutere ulteriormente di ogni aspetto del progetto durante la nostra riunione.Resto a vostra disposizione per qualsiasi domanda o chiarimento.
 
 
 
