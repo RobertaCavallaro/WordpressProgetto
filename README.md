@@ -7,7 +7,7 @@ Per automatizzare la creazione dell'infrastruttura e il setup dell'applicazione 
 Ho scelto di utilizzare Apache come server web, poiché è noto per le sue prestazioni elevate e la capacità di gestire carichi di lavoro elevati. Inoltre, ho implementato misure di sicurezza come l'utilizzo di un firewall per proteggere l'applicazione da minacce esterne. Ho reso l'applicazione fault-tolerant utilizzando una struttura di bilanciamento del carico che distribuisce il traffico in modo uniforme tra le istanze del server.
 Ho incluso un diagramma infrastrutturale che illustra l'architettura dell'infrastruttura cloud. Questo diagramma offre una panoramica visiva di come le diverse componenti interagiscono tra loro per garantire il corretto funzionamento dell'applicazione WordPress.
 Nel README ho incluso dettagliate istruzioni passo-passo per installare e configurare l'infrastruttura e l'applicazione WordPress.
-La mia soluzione dimostra competenze approfondite nell'implementazione di infrastrutture cloud, nell'automazione dell'implementazione e nella scelta dei componenti tecnologici per garantire sicurezza e performance. Sono certa che questa soluzione soddisfa gli obiettivi del progetto e che sarà un punto di partenza solido per ulteriori sviluppi.
+Sono certa che questa soluzione soddisfa gli obiettivi del progetto e che sarà un punto di partenza solido per ulteriori sviluppi.
 Sono ansiosa di presentarvi personalmente il mio lavoro e discutere ulteriormente di ogni aspetto del progetto durante la nostra riunione.Resto a vostra disposizione per qualsiasi domanda o chiarimento.
 
 
