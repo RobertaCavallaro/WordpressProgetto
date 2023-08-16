@@ -13,7 +13,7 @@ Ho creato un Internet Gateway e l'ho associato alla VPC. Questo permette alle ri
 
 
 Security Groups:
-Ho definito due gruppi di sicurezza:
+Ho definito un grupp di sicurezza:
 wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. 
 
 
