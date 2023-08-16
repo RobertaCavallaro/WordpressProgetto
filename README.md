@@ -12,10 +12,9 @@ Ho definito un grupp di sicurezza:
 wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. 
 
 Ho creato un istanza EC2:
-Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica (publica) e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
+Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
 
 Ho associato un indirizzo IP elastico all'istanza di WordPress. Questo indirizzo IP rimane costante anche dopo eventuali riavvii dell'istanza, garantendo la stabilità dell'indirizzo di accesso.
-
 
 WordPress utilizza un database locale, il database si trova sulla directory /var/www/html all'interno del file wp-config.php
 L'applicazione WordPress richiede dati dal database MySQL per funzionare, come post, pagine, impostazioni, ecc.
