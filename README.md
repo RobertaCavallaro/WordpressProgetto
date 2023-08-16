@@ -4,7 +4,7 @@ Ho utilizzato un architettura monolitica, cioe' tutti i componenti, compreso il 
 
 Ho configurato una Virtual Private Cloud (VPC) con l'indirizzo IP base 10.0.0.0/16. All'interno di questa VPC, ho creato due subnet:
 Subnet pubblica (publica): La subnet 10.0.0.0/24 nella zona di disponibilità us-east-1a. Questa subnet è destinata a ospitare l'istanza EC2 di WordPress. La configurazione include il mapping di un indirizzo IP pubblico all'avvio dell'istanza.
-Subnet privata (privata): La subnet 10.0.1.0/24 nella zona di disponibilità us-east-1b. Questa subnet ospita l'istanza EC2 di MySQL ed è isolata dalla rete pubblica.
+Subnet privata (privata): La subnet 10.0.1.0/24 nella zona di disponibilità us-east-1b. 
 
 Ho creato un Internet Gateway e l'ho associato alla VPC. Questo permette alle risorse all'interno della VPC, come le istanze EC2, di comunicare con Internet e di essere accessibili dall'esterno.
 
