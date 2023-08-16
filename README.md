@@ -38,13 +38,11 @@ tar -xzf latest.tar.gz
 Inizia database e Apache httpd server:
 sudo systemctl start mariadb httpd
 mysql -u root -p
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
-CREATE DATABASE `wordpress-database`;
-GRANT ALL PRIVILEGES ON `wordpress-db`.* TO "user"@"localhost";
+Ho create un user ed un database a questo punto.
 
 Crea un file di configurazione 
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
-nano wordpress/wp-config.php  inserisci il nome del database, l utente e la password
+nano wordpress/wp-config.php  qui ho inserito il nome del database, l utente e la password
 
 Esegui lo script di installazione
 cp -r wordpress/* /var/www/html/
