@@ -8,11 +8,11 @@ Subnet privata (privata): La subnet 10.0.1.0/24 nella zona di disponibilità us-
 
 Ho creato un Internet Gateway e l'ho associato alla VPC. Questo permette alle risorse all'interno della VPC, come le istanze EC2, di comunicare con Internet e di essere accessibili dall'esterno.
 
-Ho definito un grupp di sicurezza:
+Ho definito un gruppo di sicurezza
 wordpress_sg: Questo gruppo di sicurezza è associato all'istanza EC2 di WordPress. È configurato per consentire il traffico in ingresso sulla porta 80 (HTTP) e sulla porta 22 (SSH) per la gestione remota dell'istanza. 
 
-Ho creato un istanza EC2:
-Istanza EC2 di WordPress: Questa istanza è posizionata nella subnet pubblica e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
+Ho creato un istanza EC2
+Chiamata WordPress Questa istanza è posizionata nella subnet pubblica e utilizza il gruppo di sicurezza wordpress_sg. Viene assegnato un indirizzo IP pubblico per consentire l'accesso dall'esterno.
 
 Ho associato un indirizzo IP elastico all'istanza di WordPress. Questo indirizzo IP rimane costante anche dopo eventuali riavvii dell'istanza, garantendo la stabilità dell'indirizzo di accesso.
 
