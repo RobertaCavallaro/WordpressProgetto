@@ -126,45 +126,4 @@ resource "aws_eip" "elasticIp" {
   instance = aws_instance.wordpress_instance.id 
 }
 
-// Launch  MySQL instance
-resource "aws_instance" "mysql_instance" {
-  depends_on = [aws_subnet.custom_subnet_1b, aws_security_group.mysql_sg]
-  ami           = "ami-08a52ddb321b32a8c"
-  instance_type = "t2.micro"
-  key_name      = "robertakeypair"
-  subnet_id     = aws_subnet.custom_subnet_1b.id #Launch EC2 instance for MySQL Server in the private subnet 
-  vpc_security_group_ids = [aws_security_group.mysql_sg.id]
-  
-  tags = {
-    Name = "MySQLInstance"
-  }
-}
-
-// Create Security Group for MySQL
-resource "aws_security_group" "mysql_sg" {
-  depends_on = [aws_vpc.custom_vpc]
-  name        = "MySQLSecurityGroup"
-  description = "Allow TLS inbound and outbound traffic for MySQL"
-  vpc_id      = aws_vpc.custom_vpc.id
-
-  // Ingress rule to allow MySQL traffic from WordPress SecurityGroups
-  ingress {
-    from_port       = 3306 #allows incoming MySQL traffic (port 3306) from the security group associated with the WordPress instance 
-    to_port         = 3306 #allow specific instances to communicate with the database while still maintaining a level of security by not allowing direct access from web
-    protocol        = "tcp"
-    security_groups = [aws_security_group.wordpress_sg.id]
-  }
-
-  // Egress rule to allow all outbound traffic
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "MySQLSecurityGroup"
-  }
-}
 
